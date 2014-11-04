@@ -1,14 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
     <head>
-        <title>Page</title>
+        <title>{{2 + 3}}</title>
         <link rel="stylesheet" type="text/css" href="styles.css" />
         <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.0/angular.js"></script>
         <script src="app.js"></script>
     </head>
 
-    <body>
-        Hello World!
+    <body ng-controller="appCtrl">
+        <span ng-bind="data.hello"></span>
+        <span ng-class="{active: data.test}" ng-bind="data.hello"></span>
+        <span ng-bind="data.hello"></span>
+        <input ng-model="data.hello">
+        <span ng-if="data.test">Test code</span>
+        <div ng-click="doStuff()">Toggle me!!</div>
+        <my-directive data="data"><span>some random text</span></my-directive>
+
+        <input ng-model="data.search">
+        <input ng-model="data.search2">
+        <div ng-repeat="state in data.states | filter:data.search | filter:data.search2">{{state}} is a state<br></div>
+        <pre>{{data.states | json}}</pre>
     </body>
 
 </html>
